@@ -87,6 +87,12 @@ class PiecewiseAQI(BaseAQI):
                 bphi = bp[1]
                 break
             idx += 1
+
+        # pollution is off the charts!
+        # (for example PM10 > 604 ug/m3 for EPA)
+        if(idx >= len(self.piecewise['bp'][elem])):
+            return Decimal('Infinity')
+
         # get corresponding AQI boundaries
         (aqilo, aqihi) = self.piecewise['aqi'][idx]
 
